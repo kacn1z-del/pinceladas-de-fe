@@ -292,6 +292,25 @@
     width:100%;
   }
 
+  /* ---------- Product photo cards (real photos in catalog) ---------- */
+  .photo-card{ padding-top:0; overflow:hidden; }
+  .photo-frame{
+    all:unset;
+    cursor:pointer;
+    display:block;
+    width:calc(100% + 52px);
+    margin:0 -26px 20px;
+    aspect-ratio:4/5;
+    overflow:hidden;
+  }
+  .photo-frame img{
+    width:100%; height:100%; object-fit:cover;
+    transition:transform .5s ease;
+  }
+  .photo-frame:hover img{ transform:scale(1.05); }
+  .photo-frame:focus-visible{ outline:2px solid var(--gold); outline-offset:-3px; }
+  .photo-grid .oil-card:not(.photo-card){ padding-top:36px; }
+
   .catalog-note{
     text-align:center;
     margin-top:52px;
@@ -712,35 +731,69 @@
         <p>Composiciones de plantas naturales para dar vida y frescura a cualquier espacio del hogar.</p>
       </div>
 
-      <div class="oils-grid">
+      <div class="oils-grid photo-grid">
 
-        <article class="oil-card reveal-up">
-          <svg class="bottle" viewBox="0 0 88 120" aria-hidden="true">
-            <path d="M30 78h28l-4 30H34l-4-30z" fill="#EFDDB2" stroke="#B8863E" stroke-width="1.5"/>
-            <path d="M44 78C44 58 20 54 18 30c18 6 26 26 26 48z" fill="#7A8563"/>
-            <path d="M44 78C44 52 68 46 72 20c-20 8-28 30-28 58z" fill="#96A377"/>
-            <path d="M44 78C44 60 36 44 44 26c8 18 0 34 0 52z" fill="#5B6B4F"/>
-          </svg>
-          <h3>Arreglo de mesa</h3>
-          <span class="latin">Follaje mixto</span>
-          <p>Ideal para centros de mesa o recibidores. Combina texturas verdes en una maceta cerámica.</p>
+        <article class="oil-card photo-card reveal-up">
+          <button class="photo-frame" data-full="assets/matas/mata-bowl-flores.jpg" data-caption="Sansevieria en bowl de vidrio con piedras blancas y flores decorativas">
+            <img src="assets/matas/mata-bowl-flores.jpg" alt="Sansevieria en bowl de vidrio con piedras blancas y flores decorativas" loading="lazy">
+          </button>
+          <h3>Bowl con flores</h3>
+          <span class="latin">Sansevieria variegata</span>
+          <p>Bowl de vidrio con piedras blancas y flores decorativas de acento.</p>
           <span class="tag">Interior</span>
         </article>
 
-        <article class="oil-card reveal-up">
-          <svg class="bottle" viewBox="0 0 88 120" aria-hidden="true">
-            <path d="M24 76h40l-5 32H29l-5-32z" fill="#EFDDB2" stroke="#B8863E" stroke-width="1.5"/>
-            <circle cx="30" cy="52" r="15" fill="#96A377"/>
-            <circle cx="46" cy="38" r="18" fill="#7A8563"/>
-            <circle cx="60" cy="54" r="13" fill="#5B6B4F"/>
-          </svg>
-          <h3>Arreglo tupido</h3>
-          <span class="latin">Follaje abundante</span>
-          <p>Un arreglo denso y frondoso, perfecto como pieza central en salas y terrazas.</p>
-          <span class="tag">Interior &amp; exterior</span>
+        <article class="oil-card photo-card reveal-up">
+          <button class="photo-frame" data-full="assets/matas/mata-bowl-cristales-1.jpg" data-caption="Sansevieria en bowl con cristales de colores">
+            <img src="assets/matas/mata-bowl-cristales-1.jpg" alt="Sansevieria en bowl con cristales de colores" loading="lazy">
+          </button>
+          <h3>Bowl cristal multicolor</h3>
+          <span class="latin">Sansevieria trifasciata</span>
+          <p>Cristales decorativos en tonos ámbar, turquesa y verde que atrapan la luz.</p>
+          <span class="tag">Interior</span>
         </article>
 
-        <article class="oil-card reveal-up">
+        <article class="oil-card photo-card reveal-up">
+          <button class="photo-frame" data-full="assets/matas/mata-aire-turquesa.jpg" data-caption="Planta de aire en maceta turquesa con base geométrica dorada">
+            <img src="assets/matas/mata-aire-turquesa.jpg" alt="Planta de aire en maceta turquesa con base geométrica dorada" loading="lazy">
+          </button>
+          <h3>Planta de aire</h3>
+          <span class="latin">Tillandsia</span>
+          <p>Maceta turquesa sobre base geométrica dorada, sin necesidad de tierra.</p>
+          <span class="tag">Bajo mantenimiento</span>
+        </article>
+
+        <article class="oil-card photo-card reveal-up">
+          <button class="photo-frame" data-full="assets/matas/mata-bowl-azul.jpg" data-caption="Sansevieria en bowl con piedras azules y brillantes">
+            <img src="assets/matas/mata-bowl-azul.jpg" alt="Sansevieria en bowl con piedras azules y brillantes" loading="lazy">
+          </button>
+          <h3>Bowl piedras azules</h3>
+          <span class="latin">Sansevieria trifasciata</span>
+          <p>Piedras azules con acentos fosforescentes para un toque distinto.</p>
+          <span class="tag">Interior</span>
+        </article>
+
+        <article class="oil-card photo-card reveal-up">
+          <button class="photo-frame" data-full="assets/matas/mata-suculenta-arcoiris.jpg" data-caption="Suculenta en bowl con capas de arena de colores">
+            <img src="assets/matas/mata-suculenta-arcoiris.jpg" alt="Suculenta en bowl con capas de arena de colores" loading="lazy">
+          </button>
+          <h3>Suculenta arcoíris</h3>
+          <span class="latin">Crassula</span>
+          <p>Capas de arena de colores que le dan una base vibrante y única.</p>
+          <span class="tag">Bajo mantenimiento</span>
+        </article>
+
+        <article class="oil-card photo-card reveal-up">
+          <button class="photo-frame" data-full="assets/matas/mata-frasco-rosa.jpg" data-caption="Sansevieria en frasco pequeño con piedras rosadas">
+            <img src="assets/matas/mata-frasco-rosa.jpg" alt="Sansevieria en frasco pequeño con piedras rosadas" loading="lazy">
+          </button>
+          <h3>Frasco piedras rosa</h3>
+          <span class="latin">Sansevieria cylindrica</span>
+          <p>Formato pequeño ideal para escritorios y espacios reducidos.</p>
+          <span class="tag">Escritorio</span>
+        </article>
+
+        <article class="oil-card photo-card reveal-up">
           <svg class="bottle" viewBox="0 0 88 120" aria-hidden="true">
             <path d="M32 90h24l-3 22H35l-3-22z" fill="#EFDDB2" stroke="#B8863E" stroke-width="1.5"/>
             <path d="M44 90V24" stroke="#5B6B4F" stroke-width="2.5" stroke-linecap="round"/>
@@ -750,6 +803,16 @@
           <span class="latin">Hojas en cascada</span>
           <p>Piezas suspendidas para balcones y rincones que necesitan un toque de vida natural.</p>
           <span class="tag">Colgante</span>
+        </article>
+
+        <article class="oil-card photo-card reveal-up">
+          <button class="photo-frame" data-full="assets/matas/mata-bowl-verde-azul.jpg" data-caption="Sansevieria en bowl con piedras verdes y azules">
+            <img src="assets/matas/mata-bowl-verde-azul.jpg" alt="Sansevieria en bowl con piedras verdes y azules" loading="lazy">
+          </button>
+          <h3>Bowl piedras verde-azul</h3>
+          <span class="latin">Sansevieria trifasciata</span>
+          <p>Combinación de piedras verdes y azules sobre fondo de pared rústica.</p>
+          <span class="tag">Interior</span>
         </article>
 
         <article class="oil-card reveal-up">
@@ -1072,7 +1135,7 @@
   document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
 
   // ---------- Gallery lightbox ----------
-  const galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
+  const galleryItems = Array.from(document.querySelectorAll('.gallery-item, .photo-frame'));
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightboxImg');
   const lightboxCaption = document.getElementById('lightboxCaption');
