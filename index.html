@@ -389,6 +389,127 @@
   @media (prefers-reduced-motion: reduce){
     *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; }
   }
+
+  /* ---------- Gallery ---------- */
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(200px, 1fr));
+    gap:18px;
+  }
+  .gallery-item{
+    all:unset;
+    cursor:pointer;
+    display:block;
+    aspect-ratio:1/1;
+    overflow:hidden;
+    border-radius:4px;
+    border:1px solid var(--line);
+    background:var(--gold-pale);
+    position:relative;
+  }
+  .gallery-item img{
+    width:100%; height:100%; object-fit:cover;
+    transition:transform .5s ease;
+  }
+  .gallery-item:hover img{ transform:scale(1.06); }
+  .gallery-item:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
+
+  /* ---------- Lightbox ---------- */
+  .lightbox{
+    position:fixed; inset:0; z-index:80;
+    background:rgba(46,42,34,0.92);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    padding:40px 20px;
+  }
+  .lightbox[hidden]{ display:none; }
+  .lightbox-img{
+    max-width:min(90vw, 900px); max-height:72vh;
+    border-radius:4px;
+    box-shadow:0 30px 60px rgba(0,0,0,0.4);
+  }
+  .lightbox-caption{
+    color:var(--cream); font-family:'Cormorant Garamond', serif;
+    font-style:italic; margin-top:18px; font-size:1.1rem; text-align:center;
+  }
+  .lightbox-close, .lightbox-nav{
+    all:unset; cursor:pointer;
+    position:absolute;
+    color:var(--cream);
+    font-family:'Playfair Display', serif;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .lightbox-close{
+    top:20px; right:24px;
+    font-size:2rem; line-height:1;
+    width:44px; height:44px;
+  }
+  .lightbox-nav{
+    top:50%; transform:translateY(-50%);
+    font-size:2.6rem; width:56px; height:56px;
+  }
+  .lightbox-prev{ left:8px; }
+  .lightbox-next{ right:8px; }
+  .lightbox-close:hover, .lightbox-nav:hover{ color:var(--gold-light); }
+  .lightbox-close:focus-visible, .lightbox-nav:focus-visible{
+    outline:2px solid var(--gold); outline-offset:2px;
+  }
+  @media (max-width:600px){
+    .lightbox-nav{ font-size:2rem; width:44px; height:44px; }
+  }
+
+  /* ---------- WhatsApp float button ---------- */
+  .whatsapp-float{
+    position:fixed; right:20px; bottom:20px; z-index:50;
+    display:flex; align-items:center; gap:10px;
+    background:#25D366; color:#fff;
+    padding:13px 18px 13px 14px;
+    border-radius:999px;
+    text-decoration:none;
+    box-shadow:0 12px 26px -8px rgba(37,211,102,0.55);
+    font-family:'Playfair Display', serif;
+    font-size:0.88rem;
+    letter-spacing:0.02em;
+    transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .whatsapp-float:hover{ transform:translateY(-3px); box-shadow:0 16px 30px -8px rgba(37,211,102,0.65); }
+  .whatsapp-float svg{ width:24px; height:24px; flex:none; }
+  .whatsapp-float .wa-label{ white-space:nowrap; }
+  @media (max-width:520px){
+    .whatsapp-float .wa-label{ display:none; }
+    .whatsapp-float{ padding:14px; }
+  }
+
+  /* ---------- Contact form ---------- */
+  .contact-form{
+    max-width:520px;
+    margin:36px auto 0;
+    text-align:left;
+    display:grid;
+    gap:18px;
+  }
+  .form-field{ display:grid; gap:6px; }
+  .form-field label{
+    font-size:0.82rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+  .form-field input, .form-field textarea{
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.05rem;
+    padding:12px 14px;
+    background:var(--cream);
+    border:1px solid var(--line);
+    border-radius:3px;
+    color:var(--ink);
+    resize:vertical;
+  }
+  .form-field input:focus, .form-field textarea:focus{
+    outline:none; border-color:var(--gold);
+  }
+  .form-note{
+    font-size:0.86rem; color:var(--ink-soft); font-style:italic; margin-top:-4px;
+  }
 </style>
 </head>
 <body>
@@ -408,6 +529,7 @@
       <a href="#aceites">Aceites</a>
       <a href="#matas">Arreglos con matas</a>
       <a href="#arte">Arte pintado</a>
+      <a href="#galeria">Galería</a>
       <a href="#quiropodia">Cuidado de pies</a>
       <a href="#historia">Nuestra historia</a>
       <a href="#contacto">Contacto</a>
@@ -427,8 +549,8 @@
 
       <div class="verse-block">
         <div class="verse-rule"></div>
-        <p class="verse-text">"Antes bien, digo que lo que los gentiles sacrifican, a los demonios lo sacrifican, y no a Dios; y no quiero que vosotros os hagáis partícipes con los demonios."</p>
-        <span class="verse-ref">1 Corintios 10:20</span>
+        <p class="verse-text">"Si pues coméis, o bebéis, o hacéis otra cosa, hacedlo todo para la gloria de Dios."</p>
+        <span class="verse-ref">1 Corintios 10:31</span>
       </div>
 
       <svg class="brushstroke reveal" viewBox="0 0 420 34" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -645,6 +767,48 @@
     </div>
   </section>
 
+  <!-- GALLERY -->
+  <section class="section-alt" id="galeria">
+    <div class="wrap">
+      <div class="section-head reveal-up">
+        <span class="section-eyebrow">Nuestro trabajo</span>
+        <h2>Galería</h2>
+        <p>Un vistazo real a nuestras piezas terminadas. Tocá una foto para verla en grande.</p>
+      </div>
+
+      <div class="gallery-grid" id="galleryGrid">
+        <button class="gallery-item reveal-up" data-full="assets/gallery/foto-1.jpg" data-caption="Aceites naturales">
+          <img src="assets/gallery/foto-1.jpg" alt="Aceites naturales Pinceladas de Fe" loading="lazy">
+        </button>
+        <button class="gallery-item reveal-up" data-full="assets/gallery/foto-2.jpg" data-caption="Arreglo con matas">
+          <img src="assets/gallery/foto-2.jpg" alt="Arreglo con matas Pinceladas de Fe" loading="lazy">
+        </button>
+        <button class="gallery-item reveal-up" data-full="assets/gallery/foto-3.jpg" data-caption="Arte pintado en madera">
+          <img src="assets/gallery/foto-3.jpg" alt="Arte pintado en madera Pinceladas de Fe" loading="lazy">
+        </button>
+        <button class="gallery-item reveal-up" data-full="assets/gallery/foto-4.jpg" data-caption="Arte pintado en vidrio">
+          <img src="assets/gallery/foto-4.jpg" alt="Arte pintado en vidrio Pinceladas de Fe" loading="lazy">
+        </button>
+        <button class="gallery-item reveal-up" data-full="assets/gallery/foto-5.jpg" data-caption="Arte pintado en lata">
+          <img src="assets/gallery/foto-5.jpg" alt="Arte pintado en lata Pinceladas de Fe" loading="lazy">
+        </button>
+        <button class="gallery-item reveal-up" data-full="assets/gallery/foto-6.jpg" data-caption="Arte pintado en piedra">
+          <img src="assets/gallery/foto-6.jpg" alt="Arte pintado en piedra Pinceladas de Fe" loading="lazy">
+        </button>
+      </div>
+      <p class="catalog-note reveal-up">¿Tenés fotos de tus piezas? Subilas a <code>assets/gallery/</code> con esos mismos nombres y aparecen acá automáticamente.</p>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Imagen ampliada" hidden>
+    <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar">&times;</button>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Anterior">&#8249;</button>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+    <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Siguiente">&#8250;</button>
+    <p class="lightbox-caption" id="lightboxCaption"></p>
+  </div>
+
   <!-- QUIROPODIA -->
   <section class="section-alt" id="quiropodia">
     <div class="wrap">
@@ -765,14 +929,36 @@
     <div class="wrap">
       <span class="section-eyebrow">Conversemos</span>
       <h2>¿Tienes alguna pregunta?</h2>
-      <p>Por ahora este es nuestro catálogo. Escríbenos si quieres más información sobre nuestros aceites.</p>
+      <p>Escríbenos si quieres más información sobre nuestros aceites, matas o piezas de arte.</p>
       <div class="contact-links">
-        <a class="btn primary" href="mailto:hola@pinceladasdefe.com">Escribir un correo</a>
-        <a class="btn" href="#aceites">Ver catálogo</a>
+        <a class="btn primary" href="https://wa.me/50600000000" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+        <a class="btn" href="mailto:hola@pinceladasdefe.com">Escribir un correo</a>
       </div>
+
+      <form class="contact-form" id="contactForm">
+        <div class="form-field">
+          <label for="cf-name">Nombre</label>
+          <input type="text" id="cf-name" name="name" required>
+        </div>
+        <div class="form-field">
+          <label for="cf-email">Correo</label>
+          <input type="email" id="cf-email" name="email" required>
+        </div>
+        <div class="form-field">
+          <label for="cf-message">Mensaje</label>
+          <textarea id="cf-message" name="message" rows="4" required></textarea>
+        </div>
+        <p class="form-note">Al enviar se abrirá tu app de correo con el mensaje ya escrito.</p>
+        <button type="submit" class="btn primary">Enviar mensaje</button>
+      </form>
     </div>
   </section>
 
+
+  <a class="whatsapp-float" href="https://wa.me/50600000000" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+    <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16.001 3C9.096 3 3.5 8.596 3.5 15.5c0 2.42.68 4.68 1.86 6.606L3 29l7.084-2.32A12.44 12.44 0 0 0 16 28c6.905 0 12.5-5.596 12.5-12.5S22.905 3 16.001 3zm0 22.7c-2.02 0-3.9-.56-5.51-1.53l-.395-.235-4.204 1.377 1.393-4.096-.257-.42A10.16 10.16 0 0 1 5.8 15.5c0-5.63 4.572-10.2 10.2-10.2 5.63 0 10.2 4.572 10.2 10.2s-4.57 10.2-10.2 10.2zm5.59-7.64c-.306-.153-1.81-.893-2.09-.995-.28-.102-.484-.153-.688.153-.204.306-.79.995-.968 1.199-.178.204-.357.23-.663.077-.306-.153-1.293-.477-2.462-1.52-.91-.812-1.524-1.814-1.703-2.12-.178-.306-.02-.472.134-.624.137-.137.306-.357.459-.535.153-.178.204-.306.306-.51.102-.204.05-.383-.026-.536-.077-.153-.688-1.659-.943-2.272-.248-.596-.5-.516-.688-.525-.178-.008-.383-.01-.587-.01-.204 0-.535.077-.816.383-.28.306-1.07 1.046-1.07 2.552 0 1.506 1.096 2.961 1.249 3.166.153.204 2.156 3.293 5.224 4.618.73.315 1.3.503 1.744.644.733.233 1.4.2 1.928.121.588-.088 1.81-.74 2.065-1.454.255-.714.255-1.326.178-1.454-.076-.128-.28-.204-.586-.357z"/></svg>
+    <span class="wa-label">WhatsApp</span>
+  </a>
 </main>
 
 <footer>
@@ -808,6 +994,61 @@
   }, { threshold: 0.15 });
 
   document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
+
+  // ---------- Gallery lightbox ----------
+  const galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxCaption = document.getElementById('lightboxCaption');
+  const lightboxClose = document.getElementById('lightboxClose');
+  const lightboxPrev = document.getElementById('lightboxPrev');
+  const lightboxNext = document.getElementById('lightboxNext');
+  let currentIndex = 0;
+
+  function openLightbox(index){
+    currentIndex = index;
+    const item = galleryItems[index];
+    lightboxImg.src = item.dataset.full;
+    lightboxImg.alt = item.querySelector('img').alt;
+    lightboxCaption.textContent = item.dataset.caption || '';
+    lightbox.hidden = false;
+    lightboxClose.focus();
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox(){
+    lightbox.hidden = true;
+    document.body.style.overflow = '';
+  }
+  function showRelative(delta){
+    currentIndex = (currentIndex + delta + galleryItems.length) % galleryItems.length;
+    openLightbox(currentIndex);
+  }
+
+  galleryItems.forEach((item, i) => {
+    item.addEventListener('click', () => openLightbox(i));
+  });
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightboxPrev.addEventListener('click', () => showRelative(-1));
+  lightboxNext.addEventListener('click', () => showRelative(1));
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', (e) => {
+    if (lightbox.hidden) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') showRelative(-1);
+    if (e.key === 'ArrowRight') showRelative(1);
+  });
+
+  // ---------- Contact form (mailto fallback, no backend) ----------
+  const contactForm = document.getElementById('contactForm');
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('cf-name').value.trim();
+    const email = document.getElementById('cf-email').value.trim();
+    const message = document.getElementById('cf-message').value.trim();
+    const subject = encodeURIComponent(`Consulta desde el sitio — ${name}`);
+    const body = encodeURIComponent(`Nombre: ${name}\nCorreo: ${email}\n\n${message}`);
+    window.location.href = `mailto:hola@pinceladasdefe.com?subject=${subject}&body=${body}`;
+  });
 </script>
 
 </body>
